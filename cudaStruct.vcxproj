@@ -158,6 +158,10 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     <ClInclude Include="bpn.h" />
     <ClInclude Include="bpn_cuda.h" />
     <ClInclude Include="CImg.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="common.h" />
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
     <ClInclude Include="img_dataset_creator.h" />
     <ClInclude Include="mnist.h" />
   </ItemGroup>
@@ -170,6 +174,12 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <Text Include="log.txt" />
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <None Include="test.conf" />
+  </ItemGroup>
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 7.0.targets" />

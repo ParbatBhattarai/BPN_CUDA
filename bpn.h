@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef __INCLUDE__HOST
 #define __INCLUDE__HOST
 #include <stdio.h>
@@ -10,6 +11,10 @@
 
 enum Type{Sigmoidal , Linear};
 
+=======
+#include "common.h"
+namespace CPU{
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 struct BPN{
 	double* weight;
 	double* bias;
@@ -31,11 +36,20 @@ double computeDiffH(double , Type);
 
 void getLevelNodes(BPN *network , int level , double** z , double** a , double** bias, double** delta , int* size);
 void getLevelWeights(BPN* network , int level , double** weights , int* size , int* length);
+<<<<<<< HEAD
 void forward_propagate_level(int level , BPN *network);
+=======
+void forward_propagate_level(int level , BPN *network , double* input);
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 void reverse_propagate_level(int level , BPN *network , double* target);
 void weight_bias_update(BPN *network);
 int train(BPN* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations = -1);
 double reverse(BPN* network , double* target);
 void forward(BPN* network , double* input);
 void initialize(BPN* network , int* noNodes , int levels , Type* type , double rate);
+<<<<<<< HEAD
 void returnOutput(BPN* network , double* input , double* output);
+=======
+void returnOutput(BPN* network , double* input , double* output);
+}
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2

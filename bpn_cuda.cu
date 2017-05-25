@@ -2,7 +2,11 @@
 
 #define THRES 0.0001 /*Threshold of training error*/
 
+<<<<<<< HEAD
 __device__ double computeFunc(double x , Type t){
+=======
+__device__ double GPU::computeFunc(double x , Type t){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(t == Linear)
 		return x;
 	
@@ -12,7 +16,11 @@ __device__ double computeFunc(double x , Type t){
 	}
 }
 
+<<<<<<< HEAD
 __device__ double computeDiff(double x , Type t){
+=======
+__device__ double GPU::computeDiff(double x , Type t){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(t == Linear)
 		return 1;
 	if(t == Sigmoidal){
@@ -22,7 +30,11 @@ __device__ double computeDiff(double x , Type t){
 }
 
 /*CUDA function to feed z value at the input*/
+<<<<<<< HEAD
 __global__ void forward_propagate_input(double* z_curr
+=======
+__global__ void GPU::forward_propagate_input(double* z_curr
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 										, double* bias
 										, int size
 										){
@@ -38,7 +50,11 @@ __global__ void forward_propagate_input(double* z_curr
 										
 
 /* CUDA function to propagate z and a values from the input level(level[size - 1]) to the output level(level[0])*/
+<<<<<<< HEAD
 __global__ void forward_propagate_level(double* a_curr				/*a values of the nodes of current level*/ 
+=======
+__global__ void GPU::forward_propagate_level(double* a_curr				/*a values of the nodes of current level*/ 
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 										, double* z_curr			/*z values of the nodes of the current level*/
 										, double* weight			/*weight connections between current(l) and previous(l + 1) level*/
 										, double* z_prev			/*z values of the nodes of the previous(l + 1) level*/
@@ -70,7 +86,11 @@ __global__ void forward_propagate_level(double* a_curr				/*a values of the node
 
 /*Function to initialize the delta-values at the output*/
 
+<<<<<<< HEAD
 __global__ void reverse_propagate_output(double *delta_curr					/*delta value of the current level*/ 
+=======
+__global__ void GPU::reverse_propagate_output(double *delta_curr					/*delta value of the current level*/ 
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 										 , double* z_curr					/*z value of the current level*/
 										 , double* target					/*target value at the output*/
 										 , double* a_curr					/*a values at the output*/
@@ -88,7 +108,11 @@ __global__ void reverse_propagate_output(double *delta_curr					/*delta value of
 }
 
 /*Function to propagate the delta-values from one level to another*/
+<<<<<<< HEAD
 __global__ void reverse_propagate_level(double *delta_curr				
+=======
+__global__ void GPU::reverse_propagate_level(double *delta_curr				
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 										, double *delta_next
 										, double* weight_next
 										, double* a_curr
@@ -113,7 +137,11 @@ __global__ void reverse_propagate_level(double *delta_curr
 	return;
 }
 /*Function that updates weight between two levels*/
+<<<<<<< HEAD
 __global__ void weight_update(double* weight						/*Weight between current and previous level*/
+=======
+__global__ void GPU::weight_update(double* weight						/*Weight between current and previous level*/
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 							  , double* delta_curr
 							  , double* z_prev
 							  , int size							/*Size of current level*/
@@ -133,7 +161,11 @@ __global__ void weight_update(double* weight						/*Weight between current and p
 }
 
 /*Function that updates the bias of a level*/
+<<<<<<< HEAD
 __global__ void bias_update(double* delta_curr
+=======
+__global__ void GPU::bias_update(double* delta_curr
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 							, double* bias                          /*Bias of the current level*/
 							, int size
 							, double rate){
@@ -148,7 +180,11 @@ __global__ void bias_update(double* delta_curr
 }
 
 
+<<<<<<< HEAD
 void copyBPNinput(BPN_CUDA* network , double *input){
+=======
+void GPU::copyBPNinput(BPN_CUDA* network , double *input){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	int inputLevel = network->noLevels - 1;
 	cudaMemcpy(network->z_val + network->noNodes - network->nodeSize[inputLevel] , input , network->nodeSize[network->noLevels - 1] * sizeof(double) , cudaMemcpyHostToDevice);
 	cudaMemcpy(network->a_val + network->noNodes - network->nodeSize[inputLevel], input , network->nodeSize[network->noLevels - 1] * sizeof(double) , cudaMemcpyHostToDevice);
@@ -156,7 +192,11 @@ void copyBPNinput(BPN_CUDA* network , double *input){
 }
 
 /*Function to compute the forward propagation of values*/
+<<<<<<< HEAD
 void forward(BPN_CUDA* network , double *input){
+=======
+void GPU::forward(BPN_CUDA* network , double *input){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	int i , sizePrev , sizeCurr;
 	double* a_curr , double* z_curr , double* weight , double* z_prev , double* bias_curr;
 	Type t = network->type[network->noLevels - 2];
@@ -200,7 +240,11 @@ void forward(BPN_CUDA* network , double *input){
 
 }
 /*Function to compute the reverse propagation of values*/
+<<<<<<< HEAD
 double reverse(BPN_CUDA* network , double* target){
+=======
+double GPU::reverse(BPN_CUDA* network , double* target){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 
 	double *delta_curr , *z_curr , *a_curr , *delta_next , *weight_next , *z_curr_h , *target_d;
 	delta_curr = network->delta;
@@ -255,7 +299,11 @@ double reverse(BPN_CUDA* network , double* target){
 }
 
 
+<<<<<<< HEAD
 void weight_bias_update(BPN_CUDA* network , double rate){
+=======
+void GPU::weight_bias_update(BPN_CUDA* network , double rate){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 
 	double* weight = network->weight;
 	double* delta_curr = network->delta;
@@ -283,7 +331,11 @@ void weight_bias_update(BPN_CUDA* network , double rate){
 	}
 }
 
+<<<<<<< HEAD
 int train(BPN_CUDA* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations){
+=======
+int GPU::train(BPN_CUDA* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	double error;
 	double *ip , *op;
 	int count = 0;
@@ -312,7 +364,11 @@ int train(BPN_CUDA* network , double* input , double* output , int dataset_no , 
 	return count;
 }
 
+<<<<<<< HEAD
 void initialize(BPN_CUDA* network , int* noNodes , int levels , Type* type , double rate){
+=======
+void GPU::initialize(BPN_CUDA* network , int* noNodes , int levels , Type* type , double rate){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	
 	network->noLevels = levels;
 	network->nodeSize = new int[levels];
@@ -375,7 +431,11 @@ void initialize(BPN_CUDA* network , int* noNodes , int levels , Type* type , dou
 
 }
 
+<<<<<<< HEAD
 void returnOutput(BPN_CUDA* network , double* input , double* output){
+=======
+void GPU::returnOutput(BPN_CUDA* network , double* input , double* output){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	int size = network->nodeSize[0];
 	forward(network , input);
 

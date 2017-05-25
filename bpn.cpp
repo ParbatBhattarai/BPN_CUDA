@@ -1,7 +1,11 @@
 
 #include "bpn.h"
 
+<<<<<<< HEAD
 double computeFuncH(double x , Type t){
+=======
+double CPU::computeFuncH(double x , Type t){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(t == Linear)
 		return x;
 	if(t == Sigmoidal)
@@ -9,7 +13,11 @@ double computeFuncH(double x , Type t){
 	
 }
 
+<<<<<<< HEAD
 double computeDiffH(double x , Type t){
+=======
+double CPU::computeDiffH(double x , Type t){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(t == Linear)
 		return 1;
 	else{
@@ -19,7 +27,11 @@ double computeDiffH(double x , Type t){
 }
 
 
+<<<<<<< HEAD
 void getLevelNodes(BPN *network , int level , double** z , double** a , double** bias, double** delta , int* size){
+=======
+void CPU::getLevelNodes(BPN *network , int level , double** z , double** a , double** bias, double** delta , int* size){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	int start = 0;
 
 	for(int i = 0 ; i < level ; i ++){
@@ -43,7 +55,11 @@ void getLevelNodes(BPN *network , int level , double** z , double** a , double**
 	return;
 }
 
+<<<<<<< HEAD
 void getLevelWeights(BPN* network , int level , double** weights , int* size , int* length){
+=======
+void CPU::getLevelWeights(BPN* network , int level , double** weights , int* size , int* length){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(level == network->noLevels - 1)
 		return;
 
@@ -59,7 +75,11 @@ void getLevelWeights(BPN* network , int level , double** weights , int* size , i
 	return;
 }
 
+<<<<<<< HEAD
 void forward_propagate_level(int level , BPN *network , double* input){
+=======
+void CPU::forward_propagate_level(int level , BPN *network , double* input){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	if(level == network->noLevels - 1){//input layer
 		if(input == NULL)
 			return;
@@ -97,7 +117,11 @@ void forward_propagate_level(int level , BPN *network , double* input){
 			a_curr[i] += *(weight + i * sizePrev + j) * z_prev[j]; 
 		}
 		a_curr[i] += bias_curr[i];
+<<<<<<< HEAD
 		z_curr[i] = computeFuncH(a_curr[i] , network->type[level]);
+=======
+		z_curr[i] = CPU::computeFuncH(a_curr[i] , network->type[level]);
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	}
 	/*DEBUG
 	printf("\nDEBUG:\n");
@@ -109,7 +133,11 @@ void forward_propagate_level(int level , BPN *network , double* input){
 }
 
 
+<<<<<<< HEAD
 void reverse_propagate_level(int level , BPN *network , double* target){
+=======
+void CPU::reverse_propagate_level(int level , BPN *network , double* target){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	double *weight_next , *delta_curr , *delta_next , *z_curr , *a_curr;
 	int size , size_next;
 
@@ -142,7 +170,11 @@ void reverse_propagate_level(int level , BPN *network , double* target){
 	return;
 }
 
+<<<<<<< HEAD
 void weight_bias_update(BPN *network){
+=======
+void CPU::weight_bias_update(BPN *network){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	double *weight = network->weight;
 	double *delta = network->delta;
 	double *z_prev = network->z_val + network->nodeSize[0];
@@ -168,7 +200,11 @@ void weight_bias_update(BPN *network){
 
 }
 
+<<<<<<< HEAD
 void forward(BPN* network , double* input){
+=======
+void CPU::forward(BPN* network , double* input){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	for(int i = network->noLevels - 1 ; i > -1 ; i --){
 		if(i == network->noLevels - 1){
 			forward_propagate_level(i , network , input);
@@ -178,7 +214,11 @@ void forward(BPN* network , double* input){
 	}
 }
 
+<<<<<<< HEAD
 double reverse(BPN* network , double* target){
+=======
+double CPU::reverse(BPN* network , double* target){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	for(int i = 0 ; i < network->noLevels - 1 ; i ++){
 		if(i == 0)
 			reverse_propagate_level(i , network , target);
@@ -195,7 +235,11 @@ double reverse(BPN* network , double* target){
 }
 
 
+<<<<<<< HEAD
 int train(BPN* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations){
+=======
+int CPU::train(BPN* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	double error;
 	double *ip , *op;
 	int count = 0;
@@ -225,7 +269,11 @@ int train(BPN* network , double* input , double* output , int dataset_no , int i
 	return count;
 }
 
+<<<<<<< HEAD
 void initialize(BPN* network , int* noNodes , int levels , Type* type , double rate){
+=======
+void CPU::initialize(BPN* network , int* noNodes , int levels , Type* type , double rate){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 
 	network->noLevels = levels;
 	network->nodeSize = new int[levels];
@@ -288,7 +336,11 @@ void initialize(BPN* network , int* noNodes , int levels , Type* type , double r
 	
 }
 
+<<<<<<< HEAD
 void returnOutput(BPN* network , double* input , double* output){
+=======
+void CPU::returnOutput(BPN* network , double* input , double* output){
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 	int size = network->nodeSize[0];
 	forward(network , input);
 

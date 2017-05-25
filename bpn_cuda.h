@@ -1,6 +1,7 @@
 
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
+<<<<<<< HEAD
 
 #ifndef __INCLUDE__HOST
 #define __INCLUDE__HOST
@@ -12,6 +13,11 @@
 /*Designation of Threshold function*/
 enum Type{Sigmoidal , Linear};
 
+=======
+#include "common.h"
+
+namespace GPU{
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 /*Backpropagation network definition*/
 struct BPN_CUDA{
 	double* weight;							/*Weight of the network*/
@@ -52,11 +58,23 @@ __global__ void bias_update(double* delta_curr , double* bias , int size , doubl
 
 void initialize(BPN_CUDA* network , int* noNodes , int levels , Type* type , double rate);
 
+<<<<<<< HEAD
 void forward(BPN_CUDA* network);
 double reverse(BPN_CUDA* network , double* target , int size);
+=======
+void forward(BPN_CUDA* network , double* input);
+double reverse(BPN_CUDA* network , double* target);
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
 void weight_bias_update(BPN_CUDA* network , double rate);
 void copyBPNinput(BPN_CUDA* network , double *input);
 
 int train(BPN_CUDA* network , double* input , double* output , int dataset_no , int input_size , int output_size , int total_iterations = -1);
 
+<<<<<<< HEAD
 void returnOutput(BPN_CUDA* network , double* input , double* output);
+=======
+void returnOutput(BPN_CUDA* network , double* input , double* output);
+
+
+}
+>>>>>>> f1d2786c10ab6d111ef46c4a7e3a62789bd140a2
